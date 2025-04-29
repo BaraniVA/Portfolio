@@ -1,13 +1,17 @@
 import { useState, useEffect } from 'react';
-import { Menu, X, Sun, Moon, Github, Linkedin, } from 'lucide-react';
+import { Menu, X, Sun, Moon, Github, Linkedin } from 'lucide-react';
 import { useTheme } from '../utils/themeContext';
 import { motion } from 'framer-motion';
+import { useLocation, useNavigate } from 'react-router-dom';
 import logoImage from '../assets/images/me.png';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const { theme, toggleTheme } = useTheme();
+  const location = useLocation();
+  const navigate = useNavigate();
+  const isHomePage = location.pathname === '/';
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -25,6 +29,20 @@ const Navbar = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const handleNavClick = (href: string) => {
+    if (isOpen) {
+      setIsOpen(false);
+    }
+    
+    if (isHomePage) {
+      // Already on home page, just scroll to the section
+      document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      // On another page, navigate to home page with the hash
+      navigate(`/${href}`);
+    }
+  };
 
   const navLinks = [
     { name: 'Home', href: '#home' },
@@ -47,8 +65,11 @@ const Navbar = () => {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
             className="flex-shrink-0 font-bold text-xl text-blue-600 dark:text-blue-400">
-            <a href="#home" className="flex items-center">
-            <div className="w-18 h-8 overflow-hidden rounded-xl">
+            <div 
+              onClick={() => navigate('/')}
+              className="flex items-center cursor-pointer"
+            >
+              <div className="w-18 h-8 overflow-hidden rounded-xl">
                 <img 
                   src={logoImage} 
                   alt="Barani" 
@@ -56,23 +77,23 @@ const Navbar = () => {
                 />
               </div>
               <span className="ml-2">Barani's Portfolio</span>
-            </a>
+            </div>
           </motion.div>
 
           {/* Desktop Menu */}
           <div className="hidden md:block flex-grow">
-            <div className="flex items-center justify-center space-x-4 mr-auto">
+            <div className="flex items-center justify-center space-x-4">
               {navLinks.map((link, index) => (
-                <motion.a
+                <motion.div
                   key={link.name}
-                  href={link.href}
+                  onClick={() => handleNavClick(link.href)}
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 px-3 py-2 rounded-md font-medium transition-colors"
+                  className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 px-3 py-2 rounded-md font-medium transition-colors cursor-pointer"
                 >
                   {link.name}
-                </motion.a>
+                </motion.div>
               ))}
             </div>
           </div>
@@ -146,14 +167,13 @@ const Navbar = () => {
       >
         <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
           {navLinks.map((link) => (
-            <a
+            <div
               key={link.name}
-              href={link.href}
-              onClick={toggleMenu}
-              className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+              onClick={() => handleNavClick(link.href)}
+              className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors cursor-pointer"
             >
               {link.name}
-            </a>
+            </div>
           ))}
           <div className="flex space-x-4 px-3 py-2">
             <a href="https://github.com/BaraniVA" target="_blank" rel="noopener noreferrer" 

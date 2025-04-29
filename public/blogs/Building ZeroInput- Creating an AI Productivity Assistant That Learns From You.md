@@ -162,7 +162,7 @@ Each time it correctly predicts what I need before I even realize it, it feels l
 
 Building something that you actually use every day is the ultimate reward — and I'm excited to keep evolving ZeroInput even further.
 
-If you're curious, the project is live on [my GitHub](#) — feedback, suggestions, and collaborations are welcome!
+If you're curious, the project is live on [my GitHub](https://github.com/BaraniVA) — feedback, suggestions, and collaborations are welcome!
 
 ---
 

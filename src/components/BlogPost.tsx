@@ -4,10 +4,12 @@ import { motion } from 'framer-motion';
 import ReactMarkdown from 'react-markdown';
 import { fadeIn } from '../utils/animations';
 import { ArrowLeft, Calendar, Clock } from 'lucide-react';
+import { blogPosts } from '../data/blogData';
 
 const BlogPost = () => {
   const { slug } = useParams<{ slug: string }>();
   const [postContent, setPostContent] = useState<string>('');
+  const [postMeta, setPostMeta] = useState<typeof blogPosts[0] | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -16,17 +18,17 @@ const BlogPost = () => {
       try {
         console.log("Current slug:", slug);
         
-        // Map the slug to the actual filename
-        let filename = '';
-        if (slug === 'Building-ZeroInput-Creating-an-AI-Productivity-Assistant-That-Learns-From-You') {
-          filename = 'Building ZeroInput- Creating an AI Productivity Assistant That Learns From You.md';
-        } else {
-          // For future posts, add more mappings here
-          filename = `${slug}.md`;
+        // Find the post metadata from our centralized data
+        const currentPost = blogPosts.find(post => post.slug === slug);
+        
+        if (!currentPost) {
+          throw new Error('Blog post not found');
         }
         
-        console.log("Fetching file:", filename);
-        const response = await fetch(`/blogs/${filename}`);
+        setPostMeta(currentPost);
+        
+        console.log("Fetching file:", currentPost.filename);
+        const response = await fetch(`/blogs/${currentPost.filename}`);
         
         if (!response.ok) {
           console.error("Failed to fetch post:", response.status, response.statusText);
@@ -82,11 +84,11 @@ const BlogPost = () => {
             <div className="flex items-center text-sm text-gray-500 dark:text-gray-400 mb-6 space-x-4">
               <span className="flex items-center">
                 <Calendar size={16} className="mr-1" />
-                April 29, 2025
+                {postMeta?.date || 'Unknown date'}
               </span>
               <span className="flex items-center">
                 <Clock size={16} className="mr-1" />
-                8 min read
+                {postMeta?.readingTime || 'Unknown read time'}
               </span>
             </div>
             

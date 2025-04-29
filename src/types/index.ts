@@ -44,4 +44,12 @@ export interface Education {
   description?: string;
 }
 
-
+export interface BlogPost {
+  slug: string;
+  title: string;
+  filename: string;
+  date: string;
+  excerpt: string;
+  readingTime: string;
+  author: string;
+}

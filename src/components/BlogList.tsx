@@ -2,35 +2,21 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { fadeIn, staggerContainer, staggerItem } from '../utils/animations';
-import { Clock, Calendar } from 'lucide-react';
-
-interface BlogPost {
-  slug: string;
-  title: string;
-  date: string;
-  excerpt: string;
-  readingTime: string;
-}
+import { Clock, Calendar, Pen } from 'lucide-react';
+import { blogPosts } from '../data/blogData'; // Import centralized blog data
+import { BlogPost } from '../types'; // Import type from central types file
 
 const BlogList = () => {
   const [posts, setPosts] = useState<BlogPost[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-  const examplePosts = [
-    {
-      slug: 'Building-ZeroInput-Creating-an-AI-Productivity-Assistant-That-Learns-From-You',
-      title: 'Building ZeroInput: Creating an AI Productivity Assistant That Learns From You',
-      date: 'April 29, 2025',
-      excerpt: 'When I started the ZeroInput project, I had a simple but ambitious goal: Build a productivity assistant that learns from your behavior and suggests actions—without you needing to ask.',
-      readingTime: '8 min read'
-    }
-  ];
-  
-  setPosts(examplePosts);
-  setLoading(false);
-}, []);
+    // Use the imported blogPosts array instead of defining examplePosts here
+    setPosts(blogPosts);
+    setLoading(false);
+  }, []);
 
+  // Rest of your component stays the same
   return (
     <section className="py-20 bg-gray-50 dark:bg-gray-900">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -65,14 +51,20 @@ const BlogList = () => {
                 className="bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300"
               >
                 <div className="p-6">
-                  <div className="flex items-center text-sm text-gray-500 dark:text-gray-400 mb-3 space-x-4">
+                  <div className="flex justify-between items-center text-sm text-gray-500 dark:text-gray-400 mb-3">
+                    <div className="flex space-x-4">
+                      <span className="flex items-center">
+                        <Calendar size={16} className="mr-1" />
+                        {post.date}
+                      </span>
+                      <span className="flex items-center">
+                        <Clock size={16} className="mr-1" />
+                        {post.readingTime}
+                      </span>
+                    </div>
                     <span className="flex items-center">
-                      <Calendar size={16} className="mr-1" />
-                      {post.date}
-                    </span>
-                    <span className="flex items-center">
-                      <Clock size={16} className="mr-1" />
-                      {post.readingTime}
+                      <Pen size={16} className="mr-1" />
+                      {post.author}
                     </span>
                   </div>
                   
