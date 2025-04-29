@@ -53,7 +53,7 @@ export const education: Education[] = [
     location: 'Chennai, Tamil Nadu',
     startYear: '2024',
     endYear: '2026',
-    description: 'Relevant Coursework: Data Structures and Algorithms, Statistics, C++, Python, Java. Awarded departmental scholarship for securing 3rd rank.'
+    description: 'Relevant Coursework: Data Structures and Algorithms, Advanced Java, Advanced Python, Machine Learning, Cloud Computing. Actively involved in research projects and seminars to enhance knowledge in emerging technologies.'
   },
   {
     id: '2',
@@ -62,6 +62,6 @@ export const education: Education[] = [
     location: 'Chennai, Tamil Nadu',
     startYear: '2021',
     endYear: '2024',
-    description: 'Graduated with a GPA of 8.86/10. Strong foundation in programming, databases, and software development.'
+    description: 'Graduated with a GPA of 8.86/10. Strong foundation in programming, databases, and software development. Awarded departmental scholarship for securing 3rd rank.'
   }  
 ];
