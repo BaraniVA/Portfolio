@@ -30,12 +30,15 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const handleNavClick = (href: string) => {
+  const handleNavClick = (href: string, isPage: boolean = false) => {
     if (isOpen) {
       setIsOpen(false);
     }
     
-    if (isHomePage) {
+    if (isPage) {
+      // Direct navigation to a different page
+      navigate(href);
+    } else if (isHomePage) {
       // Already on home page, just scroll to the section
       document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
     } else {
@@ -51,6 +54,7 @@ const Navbar = () => {
     { name: 'Open Source', href: '#open-source' },
     { name: 'Resume', href: '#resume' },
     { name: 'Contact', href: '#contact' },
+    { name: 'Playground', href: '/playground', isPage: true },
   ];
 
   return (
@@ -86,7 +90,7 @@ const Navbar = () => {
               {navLinks.map((link, index) => (
                 <motion.div
                   key={link.name}
-                  onClick={() => handleNavClick(link.href)}
+                  onClick={() => handleNavClick(link.href, link.isPage)}
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
@@ -169,7 +173,7 @@ const Navbar = () => {
           {navLinks.map((link) => (
             <div
               key={link.name}
-              onClick={() => handleNavClick(link.href)}
+              onClick={() => handleNavClick(link.href, link.isPage)}
               className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors cursor-pointer"
             >
               {link.name}

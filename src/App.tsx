@@ -11,6 +11,8 @@ import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
 import BlogList from './components/BlogList';
 import BlogPost from './components/BlogPost';
+import FloatingChatButton from './components/ChatBot/FloatingChatButton';
+import Playground from './pages/Playground';
 
 function App() {
   return (
@@ -31,9 +33,15 @@ function App() {
             } />
             <Route path="/blog" element={<BlogList />} />
             <Route path="/blog/:slug" element={<BlogPost />} />
+            <Route path="/playground" element={<Playground />} />
           </Routes>
           <Footer />
-          <ScrollToTop />
+          <div className="fixed bottom-4 right-4 z-50">
+            <ScrollToTop />
+          </div>
+          <div className="fixed bottom-4 left-4 z-50">
+            <FloatingChatButton />
+          </div>
         </div>
       </ThemeProvider>
     </Router>
