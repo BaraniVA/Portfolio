@@ -18,5 +18,14 @@ export const blogPosts: BlogPost[] = [
     excerpt: 'How I turned budget management into an engaging educational game that simulates the challenges of school administration.',
     readingTime: '10 min read',
     author: 'Barani Anandakumar'
-  }
+  },
+  {
+    slug: 'Understanding-Linear-Regression-From-Confusion-to-Clarity',
+    title: 'Understanding Linear Regression: From Confusion to Clarity',
+    filename: 'Understanding Linear Regression- From Confusion to Clarity.md',
+    date: 'April 30, 2025',
+    excerpt: 'Linear regression seemed simple—until it wasn’t. Here’s how I worked through the confusion, tackled the roadblocks, and came out with a much deeper understanding.',
+    readingTime: '4 min read',
+    author: 'Barani Anandakumar'
+  }  
 ];
