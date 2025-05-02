@@ -8,6 +8,7 @@ import logoImage from '../assets/images/me.png';
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   const { theme, toggleTheme } = useTheme();
   const location = useLocation();
   const navigate = useNavigate();
@@ -30,6 +31,17 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Add this useEffect to track window size
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    window.addEventListener('resize', handleResize);
+    handleResize(); // Set initial value
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   const handleNavClick = (href: string, isPage: boolean = false) => {
     if (isOpen) {
       setIsOpen(false);
@@ -42,8 +54,11 @@ const Navbar = () => {
       // Already on home page, just scroll to the section
       document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
     } else {
-      // On another page, navigate to home page with the hash
-      navigate(`/${href}`);
+      // On another page, navigate to home page first, then scroll after a delay
+      navigate('/');
+      setTimeout(() => {
+        document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
+      }, 300); // Use a longer timeout to ensure components are rendered
     }
   };
 
@@ -59,7 +74,9 @@ const Navbar = () => {
 
   return (
     <nav className={`fixed w-full z-50 transition-all duration-300 ${
-      scrolled ? 'bg-white/80 dark:bg-gray-900/80 backdrop-blur-md shadow-md' : 'bg-transparent'
+      scrolled || isMobile 
+        ? 'bg-white/80 dark:bg-gray-900/80 backdrop-blur-md shadow-md' 
+        : 'bg-transparent'
     }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 items-center">
