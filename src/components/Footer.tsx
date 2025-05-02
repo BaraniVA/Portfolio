@@ -1,7 +1,24 @@
 import { Heart } from 'lucide-react';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
+  const navigate = useNavigate();
+  const location = useLocation();
+  
+  const handleSectionClick = (sectionId: string) => {
+    // If not already on home page, navigate to home page first
+    if (location.pathname !== '/') {
+      navigate('/');
+      // Need to wait a bit for navigation to complete before scrolling
+      setTimeout(() => {
+        document.querySelector(sectionId)?.scrollIntoView({ behavior: 'smooth' });
+      }, 300); // Increase from 100ms to 300ms
+    } else {
+      // Already on home page, just scroll
+      document.querySelector(sectionId)?.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
   
   return (
     <footer className="bg-gray-900 text-white py-12">
@@ -18,20 +35,20 @@ const Footer = () => {
             <div>
               <h4 className="text-lg font-semibold text-white mb-3">Quick Links</h4>
               <ul className="space-y-2 text-gray-400">
-                <li><a href="#home" className="hover:text-blue-400 transition-colors">Home</a></li>
-                <li><a href="#about" className="hover:text-blue-400 transition-colors">About</a></li>
-                <li><a href="#projects" className="hover:text-blue-400 transition-colors">Projects</a></li>
-                <li><a href="#open-source" className="hover:text-blue-400 transition-colors">Open Source</a></li>
+                <li><button onClick={() => handleSectionClick('#home')} className="hover:text-blue-400 transition-colors">Home</button></li>
+                <li><button onClick={() => handleSectionClick('#about')} className="hover:text-blue-400 transition-colors">About</button></li>
+                <li><button onClick={() => handleSectionClick('#projects')} className="hover:text-blue-400 transition-colors">Projects</button></li>
+                <li><button onClick={() => handleSectionClick('#open-source')} className="hover:text-blue-400 transition-colors">Open Source</button></li>
               </ul>
             </div>
             
             <div>
               <h4 className="text-lg font-semibold text-white mb-3">More</h4>
               <ul className="space-y-2 text-gray-400">
-                <li><a href="#resume" className="hover:text-blue-400 transition-colors">Resume</a></li>
-                <li><a href="#contact" className="hover:text-blue-400 transition-colors">Contact</a></li>
-                <li><a href="/blog" className="hover:text-blue-400 transition-colors">Blog</a></li>
-                <li><a href="/playground" className="hover:text-blue-400 transition-colors">Playground</a></li>
+                <li><button onClick={() => handleSectionClick('#resume')} className="hover:text-blue-400 transition-colors">Resume</button></li>
+                <li><button onClick={() => handleSectionClick('#contact')} className="hover:text-blue-400 transition-colors">Contact</button></li>
+                <li><Link to="/blog" className="hover:text-blue-400 transition-colors">Blog</Link></li>
+                <li><Link to="/playground" className="hover:text-blue-400 transition-colors">Playground</Link></li>
               </ul>
             </div>
           </div>

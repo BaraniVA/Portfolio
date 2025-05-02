@@ -20,11 +20,11 @@ export const blogPosts: BlogPost[] = [
     author: 'Barani Anandakumar'
   },
   {
-    slug: 'Understanding-Linear-Regression-From-Confusion-to-Clarity',
-    title: 'Understanding Linear Regression: From Confusion to Clarity',
-    filename: 'Understanding Linear Regression- From Confusion to Clarity.md',
+    slug: 'Learning-Linear-Regression-From-Confusion-to-Clarity',
+    title: 'Learning Linear Regression: From Confusion to Clarity',
+    filename: 'Learning Linear Regression- From Confusion to Clarity.md',
     date: 'April 30, 2025',
-    excerpt: 'Linear regression seemed simple—until it wasn’t. Here’s how I worked through the confusion, tackled the roadblocks, and came out with a much deeper understanding.',
+    excerpt: 'Linear regression seemed simple until it wasn’t. Here’s how I worked through the confusion, tackled the roadblocks, and came out with a much deeper understanding.',
     readingTime: '4 min read',
     author: 'Barani Anandakumar'
   }  

@@ -27,7 +27,7 @@ const FloatingChatButton = () => {
         animate={{ scale: 1, opacity: 1 }}
         transition={{ delay: 1 }}
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed bottom-20 right-5 sm:right-6 z-50 p-3 rounded-full bg-blue-600 text-white shadow-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 mb-2"
+        className="fixed bottom-20 right-6 sm:right-6 z-50 p-3 rounded-full bg-blue-600 text-white shadow-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 mb-2"
         aria-label={isOpen ? "Close chat" : "Open chat assistant"}
       >
         {isOpen ? <X size={24} /> : <MessageSquare size={24} />}
