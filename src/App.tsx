@@ -18,7 +18,7 @@ function App() {
   return (
     <Router>
       <ThemeProvider>
-        <div className="min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-white">
+        <div className="min-h-screen overflow-x-hidden bg-white dark:bg-gray-900 text-gray-900 dark:text-white">
           <Navbar />
           <Routes>
             <Route path="/" element={
