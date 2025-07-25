@@ -42,6 +42,34 @@ export const experiences: Experience[] = [
       'Engineered multilingual support, AI safety analysis, and location-based services to enhance app accessibility and user trust.',
       'Focused on building real-world, user-centric solutions with an emphasis on accessibility, innovation, and ethical AI integration.'
     ]
+  },
+  {
+  id: '4',
+  role: 'Mobile App Development Intern',
+  company: 'Ramco Cements',
+  location: 'Chennai, Tamil Nadu',
+  startDate: 'May 2025',
+  endDate: 'June 2025',
+  description: [
+    'Developed comprehensive Android mobile application for MACE division using React Native and Expo framework to digitize engineer conversion tracking processes.',
+    'Engineered end-to-end data collection system with structured workflow enabling field engineers to input conversion details and administrators to manage approvals efficiently.',
+    'Built automated report generation and analytics dashboard that transforms raw conversion data into actionable business intelligence for management decision-making.',
+    'Delivered production-ready solution currently used by engineering teams, streamlining operational processes and improving data accuracy across the division.'
+   ]
+  },
+  {
+  id: '5',
+  role: 'Python Development Intern',
+  company: 'Career Schools HR Solution',
+  location: 'Chennai, Tamil Nadu',
+  startDate: 'April 2025',
+  endDate: 'May 2025',
+  description: [
+    'Architected ZeroInput intelligent workflow assistant for Windows using neural networks and local language models to analyze user behavior and suggest productivity enhancements.',
+    'Implemented privacy-first system architecture ensuring all data processing and machine learning operations remain local to user devices without external data transmission.',
+    'Developed context-aware automation features that adapt to individual user patterns and work habits, providing personalized productivity suggestions based on usage analysis.',
+    'Built scalable on-device AI solution combining neural network processing with local language models to deliver smart, proactive workflow assistance while maintaining user privacy.'
+   ]
   }  
 ];
 
