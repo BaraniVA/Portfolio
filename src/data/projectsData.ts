@@ -59,7 +59,7 @@ export const projects: Project[] = [
       'Ruby',
       'Objective-C'],
     imageUrl: JobConnectAI,
-    liveUrl: 'https://clinquant-llama-d89ea9.netlify.app/',
+    liveUrl: '',
     githubUrl: 'https://github.com/BaraniVA/JobConnectAI',
     category: 'mobile'
   },
