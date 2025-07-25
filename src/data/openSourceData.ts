@@ -40,6 +40,5 @@ export const openSourceContributions: OpenSourceContribution[] = [
     description: 'Resolved container layout issues in book and genre categories, enhancing responsiveness and structure.',
     date: 'October 2024',
     url: 'https://github.com/anuragverma108/SwapReads/pull/3090'
-    
   }  
 ];
